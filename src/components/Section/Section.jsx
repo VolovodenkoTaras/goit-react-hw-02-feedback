@@ -3,12 +3,10 @@ import { SectionWithTitle, Title } from './Section.styled';
 
 export default function Section({ title, children }) {
   return (
-    <>
       <SectionWithTitle>
         <Title>{title}</Title>
         {children}
       </SectionWithTitle>
-    </>
   );
 }
 

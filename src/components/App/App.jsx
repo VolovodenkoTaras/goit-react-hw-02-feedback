@@ -4,17 +4,21 @@ import FeedbackOptions from '../FeedbackOptions';
 import Section from '../Section';
 import Notification from '../Notification';
 import { Wrapper } from './App.styled';
+import shortid from 'shortid';
 
 export default class App extends Component {
-  static defaultProps = {
-    feedbackTypes: ['good', 'neutral', 'bad'],
-  };
 
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
+
+    options = [
+    { id: shortid.generate(), category: 'good' },
+    { id: shortid.generate(), category: 'neutral' },
+    { id: shortid.generate(), category: 'bad' },
+  ];
 
   onLeaveFeedback = feedbackType => {
     this.setState(prevState => ({
@@ -33,13 +37,12 @@ export default class App extends Component {
   };
 
   render() {
-    const { good, neutral, bad } = this.state;
-    const { feedbackTypes } = this.props;
+  const { good, neutral, bad } = this.state;
     return (
       <Wrapper>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={feedbackTypes}
+            options={this.options}
             onLeaveFeedback={this.onLeaveFeedback}
           ></FeedbackOptions>
         </Section>
